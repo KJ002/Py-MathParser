@@ -16,7 +16,6 @@
 #include <stack>
 #include <utility>
 #include <tuple>
-#include <future>
 
 struct mp_SepValues{
   std::vector<std::string> infixValues;
@@ -28,11 +27,19 @@ struct mp_RPN : public mp_SepValues{
   std::vector<std::string> RPNValues;
 };
 
-inline float fpow(double x, double y) { return (float)pow(x, y); }
+float fadd(double x, double y) { return (float)(x+y); }
 
-inline float mod(double x, double y) { return (float)((int)x % (int)y); }
+float fsub(double x, double y) { return (float)(x-y); }
 
-inline float fsqrt(double x) { return (float)sqrt(x); };
+float fmul(double x, double y) { return (float)(x*y); }
+
+float fdiv(double x, double y) { return (float)(x/y); }
+
+float fpow(double x, double y) { return (float)pow(x, y); }
+
+float mod(double x, double y) { return (float)((int)x % (int)y); }
+
+float fsqrt(double x) { return (float)sqrt(x); };
 
 class MathParser{
 public:
