@@ -2,7 +2,7 @@
 #include <pybind11/stl.h>
 #include <vector>
 
-#include "../include/parser.hpp"
+#include "MathParser/include/parser.hpp"
 
 namespace py = pybind11;
 
