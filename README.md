@@ -20,7 +20,7 @@ result: float = parser.eval(rpn) # returns 2
 ```py
 parser = Parser.MathParser()
 
-x: int = 20;
+x: int = 20
 
 parser.append_variable("x", x)
 
@@ -32,7 +32,7 @@ result: float = parser.eval(rpn) # returns 21
 ```py
 parser = Parser.MathParser()
 
-x: int = 20;
+x: int = 20
 
 parser.append_variable("x", x)
 
