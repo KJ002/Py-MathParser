@@ -8,7 +8,7 @@
 namespace py = pybind11;
 
 
-PYBIND11_MODULE(Parser, m){
+PYBIND11_MODULE(MathParser, m){
 
   // Select non-cache accessing function
 
@@ -24,7 +24,7 @@ PYBIND11_MODULE(Parser, m){
 
   m.def("evaluate", &evaluate);
 
-  py::class_<MathParser>(m, "MathParser")
+  py::class_<MathParser>(m, "Parser")
     .def(py::init())
     .def("append_variable", &MathParser::appendVariable)
     .def("delete_variable", &MathParser::deleteVariable)

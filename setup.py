@@ -4,7 +4,7 @@ from pybind11.setup_helpers import Pybind11Extension
 
 ext_modules = [
     Pybind11Extension(
-        "Parser",
+        "MathParser",
         sorted(glob('*.cpp')),
     )
 ]
