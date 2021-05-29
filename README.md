@@ -1,6 +1,6 @@
 # Py-MathParser
 
-Py-MathParser is a Python binding for MathParser (https://github.com/KJ002/MathParser/). This module allows for a simple and quick evaluation of strings.
+Py-MathParser is a Python binding for MathParser (https://github.com/KJ002/MathParser/). This module allows for a simple and quick evaluation of strings. It allows you to evaluate a string with security, you define the external variables!
 
 ## Examples
 
