@@ -8,7 +8,7 @@
 namespace py = pybind11;
 
 
-PYBIND11_MODULE(MathParser, m){
+PYBIND11_MODULE(InfixParser, m){
 
   // Select non-cache accessing function
 
