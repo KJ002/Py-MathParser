@@ -2,19 +2,30 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <vector>
+#include <iostream>
 
 #include "MathParser/include/parser.hpp"
 
 namespace py = pybind11;
 
+class py_Parser : public MathParser{
+public:
+  void _appendVariable(std::string name, double value){
+    var_store.push_back(value);
+    appendVariable(name, var_store.back());
+  }
+
+  std::vector<double> var_store;
+};
 
 PYBIND11_MODULE(InfixParser, m){
 
-  // Select non-cache accessing function
+  // Select specific member function
 
-  double (MathParser::*e)(mp_RPN) = &MathParser::eval;
+  double (py_Parser::*e)(mp_RPN) = &py_Parser::eval;
   e = nullptr;
-  e = &MathParser::eval;
+  e = &py_Parser::eval;
+
 
   // Construct Python Classes & Functions
 
@@ -24,10 +35,10 @@ PYBIND11_MODULE(InfixParser, m){
 
   m.def("evaluate", &evaluate);
 
-  py::class_<MathParser>(m, "Parser")
+  py::class_<py_Parser>(m, "Parser")
     .def(py::init())
-    .def("append_variable", &MathParser::appendVariable)
-    .def("delete_variable", &MathParser::deleteVariable)
-    .def("reverse_polish_notation", &MathParser::reversePolishNotation, py::arg("infix"), py::arg("_do_cache") = false)
+    .def("append_variable", &py_Parser::_appendVariable)
+    .def("delete_variable", &py_Parser::deleteVariable)
+    .def("reverse_polish_notation", &py_Parser::reversePolishNotation, py::arg("infix"), py::arg("_do_cache") = false)
     .def("eval", e);
 }
