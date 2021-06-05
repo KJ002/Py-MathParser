@@ -1,6 +1,7 @@
 #include <pybind11/cast.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <stack>
 #include <vector>
 #include <iostream>
 
@@ -11,11 +12,11 @@ namespace py = pybind11;
 class py_Parser : public MathParser{
 public:
   void _appendVariable(std::string name, double value){
-    var_store.push_back(value);
-    appendVariable(name, var_store.back());
+    var_store.push(value);
+    appendVariable(name, var_store.top());
   }
 
-  std::vector<double> var_store;
+  std::stack<double> var_store;
 };
 
 PYBIND11_MODULE(InfixParser, m){
