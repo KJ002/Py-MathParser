@@ -11,12 +11,11 @@ namespace py = pybind11;
 
 class py_Parser : public MathParser{
 public:
-  void _appendVariable(std::string name, double value){
-    var_store.push(value);
-    appendVariable(name, var_store.top());
-  }
 
-  std::stack<double> var_store;
+  void _appendVariable(std::string name, double value){
+    double* heap_var = new double(value);
+    appendVariable(name, *heap_var);
+  }
 };
 
 PYBIND11_MODULE(InfixParser, m){
