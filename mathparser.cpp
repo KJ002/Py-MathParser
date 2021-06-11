@@ -12,20 +12,18 @@ namespace py = pybind11;
 class py_Parser : public MathParser{
 public:
 
-  void _appendVariable(std::string name, double value){
+  void _appendVariable(const std::string name, const double value){
     double* heap_var = new double(value);
     appendVariable(name, *heap_var);
+  }
+
+  void _deleteVariable(const std::string name){
+    delete getExternalVariables()[name];
+    deleteVariable(name);
   }
 };
 
 PYBIND11_MODULE(InfixParser, m){
-
-  // Select specific member function
-
-  double (py_Parser::*e)(mp_RPN) = &py_Parser::eval;
-  e = nullptr;
-  e = &py_Parser::eval;
-
 
   // Construct Python Classes & Functions
 
@@ -38,7 +36,6 @@ PYBIND11_MODULE(InfixParser, m){
   py::class_<py_Parser>(m, "Parser")
     .def(py::init())
     .def("append_variable", &py_Parser::_appendVariable)
-    .def("delete_variable", &py_Parser::deleteVariable)
-    .def("reverse_polish_notation", &py_Parser::reversePolishNotation, py::arg("infix"), py::arg("_do_cache") = false)
-    .def("eval", e);
+    .def("delete_variable", &py_Parser::_deleteVariable)
+    .def("eval", &py_Parser::eval);
 }
