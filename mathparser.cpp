@@ -38,6 +38,5 @@ PYBIND11_MODULE(InfixParser, m){
     .def("append_variable", &py_Parser::_appendVariable)
     .def("delete_variable", &py_Parser::_deleteVariable)
     .def("o", &py_Parser::getExternalVariables)
-    .def("u", &py_Parser::getVector)
     .def("eval", &py_Parser::eval);
 }
