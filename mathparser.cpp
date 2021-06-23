@@ -1,9 +1,9 @@
 #include <pybind11/cast.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+
 #include <stack>
 #include <vector>
-#include <iostream>
 
 #include "MathParser/include/parser.hpp"
 
@@ -37,5 +37,7 @@ PYBIND11_MODULE(InfixParser, m){
     .def(py::init())
     .def("append_variable", &py_Parser::_appendVariable)
     .def("delete_variable", &py_Parser::_deleteVariable)
+    .def("o", &py_Parser::getExternalVariables)
+    .def("u", &py_Parser::getVector)
     .def("eval", &py_Parser::eval);
 }
