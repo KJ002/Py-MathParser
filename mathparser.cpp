@@ -2,9 +2,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include <stack>
-#include <vector>
-
 #include "MathParser/include/parser.hpp"
 
 namespace py = pybind11;
