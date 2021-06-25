@@ -9,7 +9,7 @@
 
 namespace py = pybind11;
 
-class py_Parser : public MathParser{
+class py_Evaluator : public MathEvaluator{
 public:
 
   void _appendVariable(const std::string name, const double value){
@@ -33,7 +33,7 @@ PYBIND11_MODULE(InfixParser, m){
 
   m.def("evaluate", &evaluate);
 
-  py::class_<py_Parser>(m, "Parser")
+  py::class_<py_Evaluator>(m, "Evaluator")
     .def(py::init())
     .def("append_variable", &py_Parser::_appendVariable)
     .def("delete_variable", &py_Parser::_deleteVariable)
