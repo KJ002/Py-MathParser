@@ -1,1 +1,1 @@
-include MathParser/include/*
+include MathEvaluator/include/*
