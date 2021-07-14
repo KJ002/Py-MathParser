@@ -1,1 +1,1 @@
-include MathParser/include/parser.hpp
+include MathEvaluator/include/*

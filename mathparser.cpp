@@ -2,14 +2,11 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
-#include <stack>
-#include <vector>
-
-#include "MathParser/include/parser.hpp"
+#include "MathEvaluator/include/parser.hpp"
 
 namespace py = pybind11;
 
-class py_Parser : public MathParser{
+class py_Evaluator : public MathEvaluator{
 public:
 
   void _appendVariable(const std::string name, const double value){
@@ -27,16 +24,16 @@ PYBIND11_MODULE(InfixParser, m){
 
   // Construct Python Classes & Functions
 
-  py::class_<mp_RPN>(m, "mp_RPN")
-    .def_readwrite("RPN", &mp_RPN::RPN)
-    .def_readwrite("RPN_values", &mp_RPN::RPNValues);
+  py::class_<me_RPN>(m, "mp_RPN")
+    .def_readwrite("RPN", &me_RPN::RPN)
+    .def_readwrite("RPN_values", &me_RPN::RPNValues);
 
   m.def("evaluate", &evaluate);
 
-  py::class_<py_Parser>(m, "Parser")
+  py::class_<py_Evaluator>(m, "Evaluator")
     .def(py::init())
-    .def("append_variable", &py_Parser::_appendVariable)
-    .def("delete_variable", &py_Parser::_deleteVariable)
-    .def("variables", &py_Parser::getExternalVariables)
-    .def("eval", &py_Parser::eval);
+    .def("append_variable", &py_Evaluator::_appendVariable)
+    .def("delete_variable", &py_Evaluator::_deleteVariable)
+    .def("variables", &py_Evaluator::getExternalVariables)
+    .def("eval", &py_Evaluator::eval);
 }

@@ -5,7 +5,7 @@ from pybind11.setup_helpers import Pybind11Extension
 ext_modules = [
     Pybind11Extension(
         "InfixParser",
-        sorted(glob('*.cpp')),
+        sorted(glob('*.cpp')+glob('MathEvaluator/include/*.cpp')),
     )
 ]
 
