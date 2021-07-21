@@ -8,6 +8,7 @@ namespace py = pybind11;
 
 class py_Evaluator : public MathEvaluator{
 public:
+  py_Evaluator(bool accuracyOverEfficiency): MathEvaluator(accuracyOverEfficiency) {}
 
   void _appendVariable(const std::string name, const double value){
     double* heap_var = new double(value);
@@ -31,7 +32,7 @@ PYBIND11_MODULE(InfixParser, m){
   m.def("evaluate", &evaluate);
 
   py::class_<py_Evaluator>(m, "Evaluator")
-    .def(py::init())
+    .def(py::init<bool>(), py::arg("accuracyOverEfficiency") = false)
     .def("append_variable", &py_Evaluator::_appendVariable)
     .def("delete_variable", &py_Evaluator::_deleteVariable)
     .def("variables", &py_Evaluator::getExternalVariables)
