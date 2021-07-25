@@ -11,39 +11,45 @@ result: float = InfixParser.evaluate("1+1") # returns 2.0
 
 ### Basic Eval (With Evaluator Class)
 ```py
-parser = InfixParser.Evaluator()
+evaluator = InfixParser.Evaluator()
 
-result: float = parser.eval("1+1") # returns 2.0
+result: float = evaluator.eval("1+1") # returns 2.0
 ```
 ### External Variable Eval
 ```py
-parser = InfixParser.Evaluator()
+evaluator = InfixParser.Evaluator()
 
 x: int = 20
 
-parser.append_variable("x", x)
+evaluator.append_variable("x", x)
 
-result: float = parser.eval("1+x") # returns 21.0
+result: float = evaluator.eval("1+x") # returns 21.0
 ```
 ### Updating External Variable Eval
 ```py
-parser = InfixParser.Evaluator()
+evaluator = InfixParser.Evaluator()
 
 x: int = 20
 
-parser.append_variable("x", x)
+evaluator.append_variable("x", x)
 
-result1: float = parser.eval("1+x") # returns 21.0
+result1: float = evaluator.eval("1+x") # returns 21.0
 
 x: int = 10
 
-parser.append_variable("x", x)
+evaluator.append_variable("x", x)
 
-result2: float = parser.eval("1+x") # returns 11.0
+result2: float = evaluator.eval("1+x") # returns 11.0
 ```
 ### Functions Eval
 ```py
-parser = InfixParser.Evaluator()
+"""
+It is important to note that function do not have to
+have to be called with in an instantiated class
+and can just be called with InfixParser.evaluate()
+"""
 
-result: float = parser.eval("sin(1.5707963267948966)") # returns 1.0
+evaluator = InfixParser.Evaluator()
+
+result: float = evaluator.eval("sin(1.5707963267948966)") # returns 1.0
 ```
