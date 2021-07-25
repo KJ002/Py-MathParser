@@ -45,6 +45,7 @@ jobs:
           python-version: '3.9'
 
       - name: Build sdist
+        run: pip install pybind11
         run: python setup.py sdist
 
       - uses: actions/upload-artifact@v2
