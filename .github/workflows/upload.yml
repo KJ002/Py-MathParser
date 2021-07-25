@@ -5,9 +5,9 @@ on:
       - latest
 
 jobs:
-
   upload_to_pypi:
     name: Upload to PyPI
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: dawidd6/action-download-artifact@v2
