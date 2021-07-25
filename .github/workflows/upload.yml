@@ -5,18 +5,20 @@ on:
       - master
 
 jobs:
-  name: Upload to PyPI
 
-  steps:
-    - uses: dawidd6/action-download-artifact@v2
-      name: Download artifacts
-      with:
-        workflow: build.yml
-        workflow_conclusion: success
-        name: artifact
-        path: dist
+  upload_to_pypi:
+    name: Upload to PyPI
 
-    - uses: pypa/gh-action-pypi-publish@v1.4.2
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+    steps:
+      - uses: dawidd6/action-download-artifact@v2
+        name: Download artifacts
+        with:
+          workflow: build.yml
+          workflow_conclusion: success
+          name: artifact
+          path: dist
+
+      - uses: pypa/gh-action-pypi-publish@v1.4.2
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
